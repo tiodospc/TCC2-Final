@@ -5,7 +5,6 @@ import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from 'react';
 import { TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ReactGA from "react-ga4";
-import path from 'path';
 
 type IHomeProps = {
     event?: MouseEvent<HTMLImageElement, MouseEvent>
@@ -65,6 +64,18 @@ export const Home = () => {
             category: 'Carrinho',
             action: 'Adicionado ao carrinho',
             label: 'Clique no botão de adicionar ao carrinho',
+        })
+
+        ReactGA.event({
+            category: 'Cart',
+            action: 'Add to Cart',
+            label: 'Button Clicked'
+          });
+
+        ReactGA._toGtagOptions({
+            event_category: 'Carrinho',
+            event_action: 'Adicionado ao carrinho',
+            event_label: 'Clique no botão de adicionar ao carrinho',
         })
     }
 
