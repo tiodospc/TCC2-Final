@@ -1,10 +1,11 @@
 import './style.scss'
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
-import { ChangeEvent, MouseEvent, useRef, useState } from 'react';
+import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from 'react';
 import { TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ReactGA from "react-ga4";
+import path from 'path';
 
 type IHomeProps = {
     event?: MouseEvent<HTMLImageElement, MouseEvent>
@@ -46,7 +47,9 @@ export const Home = () => {
 
     const refDoelement = useRef<any>(null)
 
-    
+    useEffect(() => {
+        ReactGA._gaCommandSendPageview(window.location.pathname, window.location.search)
+    })
 
     const handleInput = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         e.preventDefault()
@@ -59,10 +62,10 @@ export const Home = () => {
         e.preventDefault() 
 
         ReactGA.event({
-            category: 'Cart',
-            action: 'Add to Cart',
-            label: 'Button Clicked'
-        });
+            category: 'Carrinho',
+            action: 'Adicionado ao carrinho',
+            label: 'Clique no botão de adicionar ao carrinho',
+        })
     }
 
     
